@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Smaeka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom Font Imports */
+        @font-face {
+            font-family: 'Intro-Cond-Light';
+            src: url('./fonts/Intro-Cond-Light.otf');
+        }
+
+        @font-face {
+            font-family: 'Arizonia';
+            src: url('./fonts/Arizonia-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: 'Vonique64';
+            src: url('./fonts/Vonique64.ttf');
+        }
+
+        @font-face {
+            font-family: 'Kenyan Coffee';
+            src: url('./fonts/kenyan-coffee-rg.otf');
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('./fonts/Rubik-VariableFont_wght.ttf');
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Intro-Cond-Light', sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar-light {
+            background-color: #333;
+        }
+
+        .navbar-light .navbar-brand img.logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .navbar-light .nav-link {
+            color: #ffffff !important;
+            font-size: 1rem;
+            padding: 10px 15px;
+            font-family: 'Arizonia', cursive;
+        }
+
+        .navbar-light .nav-link:hover {
+            color: #ff9900 !important;
+        }
+
+        /* Icons Styles */
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar Styles */
+        .form-inline .form-control {
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .form-inline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-inline .form-control {
+                width: 100%;
+            }
+
+            .navbar-nav.ml-auto {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+
+        /* Social Media Icons Styles */
+        .social-links a {
+            color: #333;
+            margin: 0 15px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+        }
+         /* Footer Styles */
+         .footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: 'Rubik', sans-serif;
+            /* Updated font-family */
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-col {
+            flex: 1;
+            margin: 0 15px;
+            min-width: 200px;
+        }
+
+        .footer .footer-col h4 {
+            font-family: 'Roboto', sans-serif;
+            /* Updated font-family */
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer .footer-bottom a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="img/logo.png" alt="Smaeka Logo" class="logo">
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search for products..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Navigation Links -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{range .Categories}}
+                            <a class="dropdown-item" href="/category/{{ .ID }}">{{ .Name }}</a>
+                            {{end}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Social Media Links -->
+    <section class="container my-5 text-center">
+        <h2>Connect with Us</h2>
+        <div class="social-links my-4">
+            <a href="https://www.facebook.com/profile.php?id=61564524025114&mibextid=kFxxJD" target="_blank" class="mx-3">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/smaeka1" target="_blank" class="mx-3">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" class="mx-3">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=0607866868" target="_blank" class="mx-3">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </section>
+ <!-- Footer -->
+ <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- About Us -->
+            <div class="col-md-3 footer-col">
+                <h4>About Us</h4>
+                <p>We are committed to providing the best products at great prices. Our mission is to ensure
+                    customer satisfaction.</p>
+                <a href="/about">Learn More</a>
+            </div>
+            <!-- Contact Us -->
+            <div class="col-md-3 footer-col">
+                <h4>Contact Us</h4>
+                <p>Email: tachronsmaeka@gmail.com</p>
+                <p>Phone: +21260-7866868</p>
+                <a href="#">Contact Form</a>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-md-3 footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/shop">Shop</a>
+                <a href="/about">About</a>
+                <a href="/faq">FAQ</a>
+            </div>
+            <!-- Follow Us -->
+            <div class="col-md-3 footer-col">
+                <h4>Follow Us</h4>
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=61564524025114&mibextid=kFxxJD"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a target="_blank" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a target="_blank" href="https://www.instagram.com/smaeka1"><i class="fab fa-instagram"></i> Instagram</a>
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=0607866868"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Smaeka. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of
+                Service</a></p>
+    </div>
+</footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

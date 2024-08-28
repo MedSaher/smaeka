@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smaeka - FAQ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom font faces */
+        @font-face {
+            font-family: 'Intro-Cond-Light';
+            src: url('./fonts/Intro-Cond-Light.otf');
+        }
+
+        @font-face {
+            font-family: 'Arizonia';
+            src: url('./fonts/Arizonia-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: 'Vonique64';
+            src: url('/fonts/Vonique64.ttf');
+        }
+
+        @font-face {
+            font-family: 'Kenyan Coffee';
+            src: url('/fonts/kenyan-coffee-rg.otf');
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('/fonts/Rubik-VariableFont_wght.ttf');
+        }
+
+        body {
+            font-family: 'Intro-Cond-Light', sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar-light {
+            background-color: #333;
+            /* Dark background for better logo visibility */
+        }
+
+        .navbar-light .navbar-brand img.logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .navbar-light .nav-link {
+            color: #ffffff !important;
+            font-size: 1rem;
+            padding: 10px 15px;
+            font-family: 'Arizonia', cursive;
+        }
+
+        .navbar-light .nav-link:hover {
+            color: #ff9900 !important;
+        }
+
+        /* Icons Styles */
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar Styles */
+        .form-inline .form-control {
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .form-inline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-inline .form-control {
+                width: 100%;
+            }
+
+            .navbar-nav.ml-auto {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+
+        /* FAQ Styles */
+        .faq-header {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .faq-section {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-bottom: 10px;
+            color: #0056b3;
+            /* Blue color for questions */
+        }
+
+        .faq-answer {
+            display: none;
+            font-family: 'Rubik', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #333333;
+            /* Dark gray color for answers */
+            padding-left: 20px;
+            /* Indent the answers */
+        }
+
+        .faq-question:hover {
+            color: #ff9900;
+        }
+
+        .faq-question.active+.faq-answer {
+            display: block;
+        }
+
+        .faq-question::before {
+            content: '\f078';
+            font-family: 'FontAwesome';
+            margin-right: 10px;
+        }
+
+        .faq-question.active::before {
+            content: '\f077';
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: 'Rubik', sans-serif;
+            /* Updated font-family */
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-col {
+            flex: 1;
+            margin: 0 15px;
+            min-width: 200px;
+        }
+
+        .footer .footer-col h4 {
+            font-family: 'Roboto', sans-serif;
+            /* Updated font-family */
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer .footer-bottom a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/img/logo.png" alt="Smaeka Logo" class="logo">
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search for products..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- FAQ Section -->
+    <section class="faq-section py-5">
+        <div class="container">
+            <h2 class="faq-header">Frequently Asked Questions</h2>
+
+            <div class="faq-category">
+                <h4>General Information</h4>
+                <div class="faq-item">
+                    <p class="faq-question">What is Smaeka?</p>
+                    <p class="faq-answer">Smaeka is an e-commerce platform that offers a wide range of products, from
+                        fashion to electronics, at competitive prices. Our goal is to provide a seamless shopping
+                        experience.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">How do I create an account?</p>
+                    <p class="faq-answer">Creating an account on Smaeka is simple. Click on the "Sign Up" button on the
+                        homepage, fill in your details, and you'll be ready to start shopping in no time.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">What payment methods do you accept?</p>
+                    <p class="faq-answer">We accept various payment methods including credit cards, debit cards, PayPal,
+                        and bank transfers.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">How do I contact customer service?</p>
+                    <p class="faq-answer">You can contact our customer service through the "Contact Us" page, via email
+                        at support@smaeka.com, or by calling our hotline at +21260-7866868.</p>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h4>Orders and Shipping</h4>
+                <div class="faq-item">
+                    <p class="faq-question">How do I track my order?</p>
+                    <p class="faq-answer">After placing an order, you will receive a tracking number via email. You can
+                        use this number to track your order on our website.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">Can I change or cancel my order after it's been placed?</p>
+                    <p class="faq-answer">Yes, you can change or cancel your order within 24 hours of placing it.
+                        Contact customer service for assistance.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">What are the shipping options and delivery times?</p>
+                    <p class="faq-answer">We offer standard and express shipping. Delivery times vary based on your
+                        location, but typically range from 3-7 business days.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">Do you offer international shipping?</p>
+                    <p class="faq-answer">Yes, we ship internationally. Please check our shipping policy for more
+                        details on countries we ship to and associated costs.</p>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h4>Returns and Refunds</h4>
+                <div class="faq-item">
+                    <p class="faq-question">What is your return policy?</p>
+                    <p class="faq-answer">We offer a 30-day return policy for most products. Items must be in their
+                        original condition and packaging to qualify for a return.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">How do I return an item?</p>
+                    <p class="faq-answer">To return an item, please fill out the return form included in your package
+                        and follow the instructions provided.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">When will I receive my refund?</p>
+                    <p class="faq-answer">Refunds are processed within 7-10 business days after we receive the returned
+                        item. The refund will be issued to your original payment method.</p>
+                </div>
+                <div class="faq-item">
+                    <p class="faq-question">Can I exchange a product?</p>
+                    <p class="faq-answer">Yes, exchanges are possible for certain items. Please contact customer service
+                        to arrange an exchange.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+   <!-- Footer -->
+   <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- About Us -->
+            <div class="col-md-3 footer-col">
+                <h4>About Us</h4>
+                <p>We are committed to providing the best products at great prices. Our mission is to ensure
+                    customer satisfaction.</p>
+                <a href="/about">Learn More</a>
+            </div>
+            <!-- Contact Us -->
+            <div class="col-md-3 footer-col">
+                <h4>Contact Us</h4>
+                <p>Email: tachronsmaeka@gmail.com</p>
+                <p>Phone: +21260-7866868</p>
+                <a href="#">Contact Form</a>
+            </div>
+            <!-- Quick Links -->
+            <div class="col-md-3 footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/shop">Shop</a>
+                <a href="/about">About</a>
+                <a href="/faq">FAQ</a>
+            </div>
+            <!-- Follow Us -->
+            <div class="col-md-3 footer-col">
+                <h4>Follow Us</h4>
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=61564524025114&mibextid=kFxxJD"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a target="_blank" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a target="_blank" href="https://www.instagram.com/smaeka1"><i class="fab fa-instagram"></i> Instagram</a>
+                <a target="_blank" href="https://api.whatsapp.com/send?phone=0607866868"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Smaeka. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of
+                Service</a></p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('active');
+                const answer = question.nextElementSibling;
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                } else {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

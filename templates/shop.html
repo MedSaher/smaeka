@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smaeka - Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Include your custom fonts here if necessary */
+
+        body {
+            font-family: 'Intro-Cond-Light', sans-serif;
+        }
+
+        .navbar-light {
+            background-color: #333;
+        }
+
+        .navbar-light .navbar-brand img.logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .navbar-light .nav-link {
+            color: #ffffff !important;
+            font-size: 1rem;
+            padding: 10px 15px;
+            font-family: 'Arizonia', cursive;
+        }
+
+        .navbar-light .nav-link:hover {
+            color: #ff9900 !important;
+        }
+
+        .shop-header {
+            background: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        .shop-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .shop-header p {
+            font-size: 1.2rem;
+        }
+
+        .breadcrumb {
+            background: none;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-item a {
+            color: #ff9900;
+        }
+
+        .breadcrumb-item.active {
+            color: #333;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card .card-body {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .product-card .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card .card-text {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-card .btn-primary {
+            background-color: #ff9900;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .product-card .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            justify-content: center;
+        }
+
+        .pagination .page-link {
+            color: #333;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #ff9900;
+            border-color: #ff9900;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: 'Rubik', sans-serif;
+            /* Updated font-family */
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-col {
+            flex: 1;
+            margin: 0 15px;
+            min-width: 200px;
+        }
+
+        .footer .footer-col h4 {
+            font-family: 'Roboto', sans-serif;
+            /* Updated font-family */
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer .footer-bottom a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="img/logo.png" alt="Smaeka Logo" class="logo">
+            </a>
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search for products..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Navigation Links -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{range .Categories}}
+                            <a class="dropdown-item" href="/category/{{ .ID }}">{{ .Name }}</a>
+                            {{end}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shop Header -->
+    <div class="shop-header">
+        <h1>Shop All Products</h1>
+        <p>Discover our exclusive range of products</p>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Product Grid -->
+    <section class="product-grid py-5">
+        <div class="container">
+            <div class="row">
+                {{range .NewArrivals}}
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card">
+                        <img src="img/{{ .Image }}" class="card-img-top" alt="{{ .Name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ .Name }}</h5>
+                            <p class="card-text">${{ printf "%.2f" .Price }}</p>
+                            <a href="/product/{{ .ID }}" class="btn btn-primary">View Product</a>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+
+            <!-- Pagination -->
+            <nav>
+                <ul class="pagination">
+                    {{if .PrevPage}}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{.PrevPage}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {{end}}
+
+                    {{range .Pages}}
+                    <li class="page-item {{if .IsCurrent}}active{{end}}">
+                        <a class="page-link" href="?page={{.Number}}">{{.Number}}</a>
+                    </li>
+                    {{end}}
+
+                    {{if .NextPage}}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{.NextPage}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                    {{end}}
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-col">
+                    <h4>About Us</h4>
+                    <p>We are committed to providing the best products at great prices. Our mission is to ensure customer satisfaction.</p>
+                    <a href="/about">Learn More</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Email: tachronsmaeka@gmail.com</p>
+                    <p>Phone: +21260-7866868</p>
+                    <a href="#">Contact Form</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="/shop">Shop</a>
+                    <a href="/about">About</a>
+                    <a href="/faq">FAQ</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Follow Us</h4>
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=61564524025114&mibextid=kFxxJD"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a target="_blank" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a target="_blank" href="https://www.instagram.com/smaeka1"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=0607866868"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smaeka. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

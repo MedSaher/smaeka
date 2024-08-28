@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smaeka - {{ .Category.Name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Include your custom styles here */
+        @font-face {
+            font-family: 'Intro-Cond-Light';
+            src: url('./fonts/Intro-Cond-Light.otf');
+        }
+
+        @font-face {
+            font-family: 'Arizonia';
+            src: url('./fonts/Arizonia-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: 'Vonique64';
+            src: url('/fonts/Vonique64.ttf');
+        }
+
+        @font-face {
+            font-family: 'Kenyan Coffee';
+            src: url('/fonts/kenyan-coffee-rg.otf');
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('/fonts/Rubik-VariableFont_wght.ttf');
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Intro-Cond-Light', sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar-light {
+            background-color: #333;
+            /* Dark background for better logo visibility */
+        }
+
+        .navbar-light .navbar-brand img.logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .navbar-light .nav-link {
+            color: #ffffff !important;
+            font-size: 1rem;
+            padding: 10px 15px;
+            font-family: 'Arizonia', cursive;
+        }
+
+        .navbar-light .nav-link:hover {
+            color: #ff9900 !important;
+        }
+
+        /* Icons Styles */
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar Styles */
+        .form-inline .form-control {
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .form-inline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-inline .form-control {
+                width: 100%;
+            }
+
+            .navbar-nav.ml-auto {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+        .product-card {
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card .card-body {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .product-card .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .product-card .card-text {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-card .btn-primary {
+            background-color: #ff9900;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .product-card .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: 'Rubik', sans-serif;
+            /* Updated font-family */
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-col {
+            flex: 1;
+            margin: 0 15px;
+            min-width: 200px;
+        }
+
+        .footer .footer-col h4 {
+            font-family: 'Roboto', sans-serif;
+            /* Updated font-family */
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer .footer-bottom a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        body {
+            font-family: 'Intro-Cond-Light', sans-serif;
+        }
+
+        .category-banner {
+            background: url('/img/{{ .Category.Image }}') no-repeat center center/cover;
+            height: 300px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .category-banner h1 {
+            font-family: 'Arizonia', cursive;
+            font-size: 3rem;
+        }
+
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card-body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/img/logo.png" alt="Smaeka Logo" class="logo">
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search for products..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+     <!-- Category Products Section -->
+     <section class="category-products py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Products in Category</h2>
+            <div class="row">
+                {{range .Products}}
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <img src="/img/{{ .Image }}" class="card-img-top" alt="{{ .Name }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ .Name }}</h5>
+                            <p class="card-text">${{ printf "%.2f" .Price }}</p>
+                            <a href="/product/{{ .ID }}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-col">
+                    <h4>About Us</h4>
+                    <p>We are committed to providing the best products at great prices. Our mission is to ensure customer satisfaction.</p>
+                    <a href="about">Learn More</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Email: tachronsmaeka@gmail.com</p>
+                    <p>Phone: +21260-7866868</p>
+                    <a href="#">Contact Form</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">About</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Follow Us</h4>
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=61564524025114&mibextid=kFxxJD"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a target="_blank" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a target="_blank" href="https://www.instagram.com/smaeka1"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=0607866868"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smaeka. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS and FontAwesome -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+
+</html>

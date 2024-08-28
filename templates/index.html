@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--this website developed by saher mohamed -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smaeka - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom Font Imports */
+        @font-face {
+            font-family: 'Intro-Cond-Light';
+            src: url('./fonts/Intro-Cond-Light.otf');
+        }
+
+        @font-face {
+            font-family: 'Arizonia';
+            src: url('./fonts/Arizonia-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: 'Vonique64';
+            src: url('./fonts/Vonique64.ttf');
+        }
+
+        @font-face {
+            font-family: 'Kenyan Coffee';
+            src: url('./fonts/kenyan-coffee-rg.otf');
+        }
+
+        @font-face {
+            font-family: 'Rubik';
+            src: url('./fonts/Rubik-VariableFont_wght.ttf');
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Intro-Cond-Light', sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar-light {
+            background-color: #333;
+            /* Dark background for better logo visibility */
+        }
+
+        .navbar-light .navbar-brand img.logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .navbar-light .nav-link {
+            color: #ffffff !important;
+            font-size: 1rem;
+            padding: 10px 15px;
+            font-family: 'Arizonia', cursive;
+        }
+
+        .navbar-light .nav-link:hover {
+            color: #ff9900 !important;
+        }
+
+        /* Icons Styles */
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar Styles */
+        .form-inline .form-control {
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .form-inline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-inline .form-control {
+                width: 100%;
+            }
+
+            .navbar-nav.ml-auto {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+
+        .hero-section {
+    position: relative;
+    height: 500px; /* Adjust height as needed */
+    overflow: hidden; /* Hide overflow if video is larger than the section */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Try using 'contain' or 'fill' if 'cover' does not work */
+    z-index: -1;
+}
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay */
+            z-index: 0;
+            /* Ensure it's behind the text */
+        }
+
+        .hero-section .hero-text {
+            position: relative;
+            z-index: 1;
+            /* Ensure text is above the overlay */
+        }
+
+        .hero-section .hero-text h1 {
+            font-family: 'AntipastoPro-DemiBold', sans-serif;
+            font-size: 3rem;
+            /* Adjust size as needed */
+            margin-bottom: 20px;
+        }
+
+        .hero-section .hero-text p {
+            font-family: 'Arizonia', cursive;
+            font-size: 1.5rem;
+            /* Adjust size as needed */
+            margin-bottom: 30px;
+        }
+
+        .hero-section .btn-primary {
+            background-color: #ff9900;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .hero-section .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        /* Featured Categories Styles */
+        .featured-categories {
+            background-color: #f8f9fa;
+        }
+
+        .category-tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-tile img {
+            transition: transform 0.3s ease;
+        }
+
+        .category-tile:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-tile .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .category-tile:hover .overlay {
+            opacity: 1;
+        }
+
+        .category-tile .overlay h3 {
+            font-family: 'Arizonia', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .category-tile .overlay .btn-primary {
+            background-color: #ff9900;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #ffffff;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .category-tile .overlay .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        /* New Arrivals Styles */
+        .new-arrivals {
+            background-color: #ffffff;
+        }
+
+        .new-arrivals .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .new-arrivals .card .card-text {
+            font-family: 'Rubik';
+        }
+
+        .new-arrivals .card-img-top {
+            transition: transform 0.3s ease;
+        }
+
+        .new-arrivals .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .new-arrivals .card-body {
+            padding: 1rem;
+        }
+
+        .new-arrivals .btn-primary {
+            background-color: #ff9900;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .new-arrivals .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #333;
+            border-radius: 50%;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: 'Rubik', sans-serif;
+            /* Updated font-family */
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer .footer-col {
+            flex: 1;
+            margin: 0 15px;
+            min-width: 200px;
+        }
+
+        .footer .footer-col h4 {
+            font-family: 'Roboto', sans-serif;
+            /* Updated font-family */
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-col a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .footer .footer-bottom a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="img/logo.png" alt="Smaeka Logo" class="logo">
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search for products..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            
+        </div>
+    </nav>
+
+    <!-- Navigation Links -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{range .Categories}}
+                            <a class="dropdown-item" href="/category/{{ .ID }}">{{ .Name }}</a>
+                            {{end}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video autoplay muted loop>
+            <source src="img/myvideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-text">
+            <h1>Discover the Best Deals on Fashion</h1>
+            <p>Find the latest trends and exclusive offers just for you!</p>
+            <a href="#" class="btn btn-primary">Shop Now</a>
+        </div>
+    </section>
+    <!-- Featured Categories -->
+    <section class="featured-categories py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Category 1 -->
+                {{range .Categories}}
+                <div class="col-md-4 mb-4">
+                    <div class="category-tile">
+                        <img src="img/{{ .Image }}" alt="{{ .Name }}" class="img-fluid">
+                        <div class="overlay">
+                            <h3>{{ .Name }}</h3>
+                            <a href="/category/{{ .ID }}" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </section>
+    <!-- New Arrivals Carousel -->
+<section class="new-arrivals py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">New Arrivals</h2>
+        <div id="newArrivalsCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Iterate through NewArrivals -->
+                {{ range $index, $product := .NewArrivals }}
+                    {{ if eq (mod $index 3) 0 }}
+                        <div class="carousel-item {{ if eq $index 0 }}active{{ end }}">
+                            <div class="row">
+                    {{ end }}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="/img/{{ $product.Image }}" class="card-img-top" alt="{{ $product.Name }}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ $product.Name }}</h5>
+                                <p class="card-text">${{ printf "%.2f" $product.Price }}</p>
+                                <a href="/product/{{ .ID }}" class="btn btn-primary">Discover More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{ if eq (mod (add $index 1) 3) 0 }}
+                            </div>
+                        </div>
+                    {{ end }}
+                {{ end }}
+                <!-- Close unclosed row/div if needed -->
+                {{ if ne (mod (len .NewArrivals) 3) 0 }}
+                            </div>
+                        </div>
+                {{ end }}
+            </div>
+            <!-- Carousel Controls -->
+            <a class="carousel-control-prev" href="#newArrivalsCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#newArrivalsCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- About Us -->
+                <div class="col-md-3 footer-col">
+                    <h4>About Us</h4>
+                    <p>We are committed to providing the best products at great prices. Our mission is to ensure
+                        customer satisfaction.</p>
+                    <a href="/about">Learn More</a>
+                </div>
+                <!-- Contact Us -->
+                <div class="col-md-3 footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Email: tachronsmaeka@gmail.com</p>
+                    <p>Phone: +21260-7866868</p>
+                    <a href="#">Contact Form</a>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-md-3 footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="/">Home</a>
+                    <a href="/shop">Shop</a>
+                    <a href="/about">About</a>
+                    <a href="/faq">FAQ</a>
+                </div>
+                <!-- Follow Us -->
+                <div class="col-md-3 footer-col">
+                    <h4>Follow Us</h4>
+                    <a target="_blank" href="https://www.facebook.com/profile.php?id=61564524025114&mibextid=kFxxJD"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a target="_blank" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a target="_blank" href="https://www.instagram.com/smaeka1"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=0607866868"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smaeka. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of
+                    Service</a></p>
+        </div>
+    </footer>
+
+
+    <!-- Include Bootstrap JS and FontAwesome -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+
+</html>

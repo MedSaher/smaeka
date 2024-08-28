@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smaeka - {{ .Product.Name }}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar-light {
+            background-color: #333;
+        }
+        .navbar-light .navbar-brand img.logo {
+            width: 120px;
+            height: auto;
+        }
+        .navbar-light .nav-link {
+            color: #ffffff !important;
+            font-size: 1rem;
+        }
+        .navbar-light .nav-link:hover {
+            color: #ff9900 !important;
+        }
+        .product-banner {
+            background: url('/img/{{ .Product.Image }}') no-repeat center center/cover;
+            height: 300px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-banner h1 {
+            font-family: 'Arizonia', cursive;
+            font-size: 3rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .container-fluid {
+            padding: 20px;
+        }
+        .product-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .product-info, .order-form {
+            flex: 1;
+            margin: 10px;
+        }
+        .product-info img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-height: 400px;
+        }
+        .product-info h2 {
+            font-family: 'Arizonia', cursive;
+            font-size: 2rem;
+            margin-top: 15px;
+            color: #333;
+        }
+        .product-info p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .product-info .price {
+            font-size: 1.5rem;
+            color: #ff9900;
+            margin: 10px 0;
+        }
+        .order-form {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .order-form h3 {
+            font-family: 'Arizonia', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .order-form .form-group {
+            margin-bottom: 15px;
+        }
+        .order-form .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .order-form .form-check-label {
+            font-size: 0.9rem;
+        }
+        .btn-primary {
+            background-color: #ff9900;
+            border: none;
+            padding: 10px 20px;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        .btn-primary:hover {
+            background-color: #e68a00;
+        }
+        footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 40px 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        footer .footer-col {
+            flex: 1;
+            margin: 0 15px;
+            min-width: 200px;
+        }
+        footer .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        footer .footer-col p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        footer .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        footer .footer-col a:hover {
+            text-decoration: underline;
+        }
+        footer .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+        footer .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+        footer .footer-bottom a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+        footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/img/logo.png" alt="Smaeka Logo" class="logo">
+            </a>
+            <form class="form-inline mx-auto">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search for products..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Product Details and Order Form -->
+    <div class="container-fluid">
+        <div class="product-details">
+            <div class="product-info" style="text-align: center;">
+                <img src="/img/{{ .Product.Image }}" alt="{{ .Product.Name }}">
+                <h2>{{ .Product.Name }}</h2>
+                <p>{{ .Product.Desc }}</p>
+                <p class="price">Price: ${{ .Product.Price }}</p>
+            </div>
+            <div class="order-form">
+                <h3>Order Now</h3>
+                <form action="/submit-command" method="POST">
+                    <input type="hidden" name="productID" value="{{.Product.ID}}">
+                    <input type="hidden" name="productName" value="{{.Product.Name}}">
+                    <input type="hidden" name="productPrice" value="{{.Product.Price}}">
+                    <input type="hidden" name="productID" value="{{ .Product.ID }}">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" class="form-control" required>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" id="terms" class="form-check-input" name="termsAccepted" required>
+                        <label for="terms" class="form-check-label">I have read and agree to the <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-of-service" target="_blank">Terms of Service</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-col">
+                    <h4>About Us</h4>
+                    <p>We are committed to providing the best products at great prices. Our mission is to ensure customer satisfaction.</p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@smaeka.com</p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                    <a href="#">Contact Form</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">About</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <h4>Follow Us</h4>
+                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smaeka. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Include Bootstrap JS and FontAwesome -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+
+</html>

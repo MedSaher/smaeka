@@ -1,0 +1,90 @@
+ <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header .personal-info {
+            font-size: 1.1rem;
+        }
+
+        .header .logout-button {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header .logout-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px;
+            position: fixed;
+            top: 60px;
+            /* Offset for the header */
+            left: 0;
+            width: 250px;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+            border-radius: 5px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 270px;
+            /* Offset for the sidebar */
+            padding: 20px;
+            margin-top: 70px;
+            /* Offset for the header */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 80px;
+                /* Adjust for header */
+            }
+        }
+    </style>

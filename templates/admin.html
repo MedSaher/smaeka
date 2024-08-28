@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smaeka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header .personal-info {
+            font-size: 1.1rem;
+        }
+
+        .header .logout-button {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header .logout-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px;
+            position: fixed;
+            top: 60px;
+            /* Offset for the header */
+            left: 0;
+            width: 250px;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+            border-radius: 5px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 270px;
+            /* Offset for the sidebar */
+            padding: 20px;
+            margin-top: 70px;
+            /* Offset for the header */
+        }
+
+        /* Hide all sections initially */
+        .section {
+            display: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 80px;
+                /* Adjust for header */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+   <div class="header">
+    <div class="personal-info">
+        <span>Welcome, Admin</span>
+    </div>
+    <form action="/logout" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-success">Logout</button>
+    </form>
+</div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2 class="text-center">Admin Dashboard</h2>
+        <a data-target="controlCategories">Control Categories</a>
+        <a data-target="controlCommands">Control Commands</a>
+        <a data-target="controlProducts">Control Products</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Categories Section -->
+        <div id="controlCategories" class="section">
+            <h2>Control Categories</h2>
+            <!-- Category management interface -->
+            <form id="categoryForm" method="post" action="/admin/add-category" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="categoryName">Category Name</label>
+                    <input type="text" class="form-control" id="categoryName" name="categoryName"
+                        placeholder="Enter category name" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryImage">Category Image</label>
+                    <input type="file" class="form-control" id="categoryImage" name="categoryImage" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Category</button>
+            </form>
+            <div id="responseMessage" class="mt-3">
+                {{ if .success }}
+                <div class="alert alert-success">{{ .success }}</div>
+                {{ end }}
+                {{ if .error }}
+                <div class="alert alert-danger">{{ .error }}</div>
+                {{ end }}
+            </div>
+
+            <!-- List Categories -->
+            <h3 class="mt-5">Category List</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .Categories }}
+                    <tr>
+                        <td>{{ .ID }}</td>
+                        <td>{{ .Name }}</td>
+                        <td>
+                            <form method="post" action="/admin/delete-category" style="display:inline;">
+                                <input type="hidden" name="categoryID" value="{{ .ID }}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="controlCommands" class="section">
+            <h2>Control Commands</h2>
+        
+            <!-- List Commands -->
+            <h3 class="mt-5">Command List</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>City</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Date/Time</th>
+                        <th>Confirmed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .Commands }}
+                    <tr>
+                        <td>{{ .ID }}</td>
+                        <td>{{ .FullName }}</td>
+                        <td>{{ .City }}</td>
+                        <td>{{ .Email }}</td>
+                        <td>{{ .Number }}</td>
+                        <td>{{ .ProductID }}</td>
+                        <td>{{ .ProductName }}</td>
+                        <td>${{ .ProductPrice }}</td>
+                        <td>{{ .DateTime }}</td>
+                        <td>
+                            {{ if eq .Confirmed "yes" }}
+                            <span class="text-success">Confirmed</span>
+                            {{ else }}
+                            <span class="text-danger">Not Confirmed</span>
+                            {{ end }}
+                        </td>
+                        <td>
+                            {{ if not (eq .Confirmed "yes") }}
+                            <form method="post" action="/admin/confirm-command" style="display:inline;">
+                                <input type="hidden" name="commandID" value="{{ .ID }}">
+                                <button type="submit" class="btn btn-success">Confirm</button>
+                            </form>
+                            {{ end }}
+                            <form method="post" action="/admin/delete-command" style="display:inline;">
+                                <input type="hidden" name="commandID" value="{{ .ID }}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Products Section -->
+        <div id="controlProducts" class="section">
+            <h2>Control Products</h2>
+
+            <!-- Add New Product -->
+            <h3>Add New Product</h3>
+            <form id="productForm" method="post" action="/admin/add-product" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="productName"
+                        placeholder="Enter product name" required>
+                </div>
+                <div class="form-group">
+                    <label for="productDesc">Product Description</label>
+                    <textarea class="form-control" id="productDesc" name="productDesc" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Product Price</label>
+                    <input type="number" step="0.01" class="form-control" id="productPrice" name="productPrice"
+                        placeholder="Enter product price" required>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Product Image</label>
+                    <input type="file" class="form-control-file" id="productImage" name="productImage">
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <select class="form-control" id="productCategory" name="productCategory" required>
+                        {{ range .Categories }}
+                        <option value="{{ .ID }}">{{ .Name }}</option>
+                        {{ end }}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+            <div id="responseMessage" class="mt-3">
+                {{ if .success }}
+                <div class="alert alert-success">{{ .success }}</div>
+                {{ end }}
+                {{ if .error }}
+                <div class="alert alert-danger">{{ .error }}</div>
+                {{ end }}
+            </div>
+
+            <!-- List Products -->
+            <h3 class="mt-5">Product List</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .Products }}
+                    <tr>
+                        <td>{{ .ID }}</td>
+                        <td>{{ .Name }}</td>
+                        <td>{{ .Desc }}</td>
+                        <td>{{ .Price }}</td>
+                        <td><img src="/img/{{ .Image }}" alt="Product Image" style="max-width: 100px;"></td>
+                        <td>
+                            <form method="post" action="/admin/edit-product" style="display:inline;">
+                                <input type="hidden" name="productID" value="{{ .ID }}">
+                                <button type="submit" class="btn btn-warning">Edit</button>
+                            </form>
+                            <form method="post" action="/admin/delete-product" style="display:inline;">
+                                <input type="hidden" name="productID" value="{{ .ID }}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+
+            <!-- Edit Product Modal -->
+            <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog"
+                aria-labelledby="editProductModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="editProductForm" method="post" action="/admin/edit-product">
+                            <div class="modal-body">
+                                <input type="hidden" id="editProductID" name="productID">
+                                <div class="form-group">
+                                    <label for="editProductName">Product Name</label>
+                                    <input type="text" class="form-control" id="editProductName" name="productName"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editProductPrice">Product Price</label>
+                                    <input type="number" class="form-control" id="editProductPrice" name="productPrice"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editProductCategory">Product Category</label>
+                                    <select class="form-control" id="editProductCategory" name="productCategory"
+                                        required>
+                                        {{ range .Categories }}
+                                        <option value="{{ .ID }}">{{ .Name }}</option>
+                                        {{ end }}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for Dynamic Content Display -->
+    <script>
+        // Function to show the selected section
+        function showSection(sectionID) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(function (section) {
+                section.style.display = 'none';
+            });
+
+            // Show the selected section
+            document.getElementById(sectionID).style.display = 'block';
+        }
+
+        // Add event listeners to sidebar links
+        document.querySelectorAll('.sidebar a').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetSection = this.getAttribute('data-target');
+                showSection(targetSection);
+            });
+        });
+
+        // Initially show the categories section
+        showSection('controlCategories');
+    </script>
+</body>
+
+</html>
